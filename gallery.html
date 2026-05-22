@@ -1,13 +1,24 @@
-<!DOCTYPE html>
+1<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A professional portfolio gallery showcasing creative work in a modern masonry grid layout."
+      content="Explore the Empowered Women Rising Trust Association gallery showcasing community outreach, women empowerment programs, mentorship events, and support initiatives for the girl child."
     />
-    <title>EWRTA | Gallery</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJG9Q3W8J8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-RJG9Q3W8J8');
+    </script>
+
+    <title>Gallery | Empowered Women Rising Trust Association</title>
 
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,12 +28,28 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./img/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./img/web-app-manifest-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./img/apple-touch-icon.png"
+    />
+    <link rel="shortcut icon" href="./img/favicon.ico" />
+
     <style>
-      /* =============================================
-           CSS VARIABLES & PALETTE
-           ============================================= */
+      /* --- 1. Variables & Reset --- */
       :root {
-        /* Provided Palette */
         --deep-purple: #2e0f3a;
         --rich-purple: #5b2a86;
         --gold: #d4af37;
@@ -31,30 +58,16 @@
         --text-dark: #333333;
         --white: #ffffff;
 
-        /* Semantic Mappings */
-        --color-bg: var(--off-white);
-        --color-surface: var(--white);
-        --color-text-main: var(--text-dark);
-        --color-text-muted: #666666;
-        --color-accent: var(--deep-purple);
-        --color-highlight: var(--gold);
-        --color-hover-overlay: rgba(
-          46,
-          15,
-          58,
-          0.75
-        ); /* Deep purple with opacity */
-
-        --shadow-soft: 0 8px 30px rgba(46, 15, 58, 0.06);
-        --shadow-hover: 0 20px 40px rgba(46, 15, 58, 0.12);
-        --radius-lg: 16px;
-        --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --gap: 24px;
+        --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      * {
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
 
       html {
@@ -64,204 +77,352 @@
       body {
         font-family: "Nunito Sans", sans-serif;
         font-weight: 400;
-        background-color: var(--color-bg);
-        color: var(--color-text-main);
+        background-color: var(--off-white);
+        color: var(--text-dark);
         line-height: 1.7;
         overflow-x: hidden;
       }
 
-      /* =============================================
-           TYPOGRAPHY
-           ============================================= */
+      /* --- 2. Typography & Utilities --- */
       h1,
       h2,
       h3 {
         font-family: "Nunito Sans", sans-serif;
-        font-weight: 700;
-        color: var(--color-accent);
+        line-height: 1.2;
+        color: var(--deep-purple);
       }
 
       a {
         text-decoration: none;
         color: inherit;
-        transition: var(--transition-smooth);
       }
 
-      /* =============================================
-           HERO SECTION
-           ============================================= */
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* --- 3. Hero Section --- */
       .hero {
+        background-color: var(--deep-purple);
+        color: var(--white);
+        padding: 5rem 2rem;
         text-align: center;
-        padding: 6rem 2rem 4rem;
-        max-width: 900px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Subtle gradient overlay for depth */
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(91, 42, 134, 0.4) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
         margin: 0 auto;
       }
 
       .hero h1 {
         font-size: clamp(2.5rem, 6vw, 4.5rem);
-        line-height: 1.1;
-        margin-bottom: 1.5rem;
+        font-weight: 700;
+        color: var(--off-white);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
       }
 
       .hero p {
-        font-size: 1.1rem;
-        color: var(--color-text-muted);
-        max-width: 600px;
-        margin: 0 auto;
+        font-family: "Nunito Sans", sans-serif;
+        font-style: italic;
+        font-size: 1.5rem;
+        color: var(--soft-gold);
+        margin-bottom: 2rem;
       }
 
-      /* =============================================
-           MASONRY GALLERY
-           ============================================= */
+      .divider {
+        width: 80px;
+        height: 3px;
+        background-color: var(--gold);
+        margin: 0 auto;
+        border-radius: 2px;
+      }
+
+      /* --- 4. Masonry Grid Layout --- */
       .gallery-container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: 3rem 1.5rem;
       }
 
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        grid-auto-rows: 10px;
-        gap: 24px;
+      /* CSS Columns Masonry Technique */
+      .masonry-grid {
+        column-count: 4;
+        column-gap: var(--gap);
       }
 
+      /* Responsive Breakpoints */
+      @media (max-width: 1200px) {
+        .masonry-grid {
+          column-count: 3;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .masonry-grid {
+          column-count: 1;
+        }
+        .hero {
+          padding: 3rem 1rem;
+        }
+      }
+
+      /* --- 5. Gallery Items (Cards) --- */
       .gallery-item {
-        border-radius: var(--radius-lg);
-        overflow: hidden;
+        break-inside: avoid; /* Prevents image from being split across columns */
+        margin-bottom: var(--gap);
         position: relative;
-        background: var(--color-surface);
-        box-shadow: var(--shadow-soft);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--white);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
         cursor: pointer;
         transition: var(--transition-smooth);
       }
 
+      /* Hover Effects on Container */
+      .gallery-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
+          0 10px 10px -5px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Image Styling */
       .gallery-item img {
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: cover;
-        display: block;
         transition: transform 0.6s ease;
       }
 
-      /* Hover Overlay */
+      .gallery-item:hover img {
+        transform: scale(1.07);
+      }
+
+      /* Overlay Styling */
       .overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--color-hover-overlay); /* Dark Purple Overlay */
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(46, 15, 58, 0.9) 0%,
+          transparent 60%
+        );
+        opacity: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 2rem;
-        opacity: 0;
+        padding: 1.5rem;
         transition: opacity 0.4s ease;
       }
 
+      .gallery-item:hover .overlay,
+      .gallery-item:focus-within .overlay {
+        opacity: 1;
+      }
+
       .overlay h3 {
-        color: var(--soft-gold); /* Soft Gold for titles on dark bg */
-        font-size: 1.4rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        color: var(--white);
+        transform: translateY(20px);
+        transition: transform 0.4s ease 0.05s;
+      }
+
+      .overlay span {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--gold);
+        font-weight: 600;
         transform: translateY(20px);
         transition: transform 0.4s ease 0.1s;
       }
 
-      .overlay p {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
-        transform: translateY(20px);
-        transition: transform 0.4s ease 0.2s;
-      }
-
-      /* Hover Effects */
-      .gallery-item:hover {
-        box-shadow: var(--shadow-hover);
-        transform: translateY(-5px);
-      }
-
-      .gallery-item:hover img {
-        transform: scale(1.1);
-      }
-
-      .gallery-item:hover .overlay {
-        opacity: 1;
-      }
-
       .gallery-item:hover .overlay h3,
-      .gallery-item:hover .overlay p {
+      .gallery-item:hover .overlay span {
         transform: translateY(0);
       }
 
-      /* Row Spanning Classes */
-      .item-tall {
-        grid-row: span 40;
-      }
-      .item-medium {
-        grid-row: span 30;
-      }
-      .item-short {
-        grid-row: span 20;
+      /* Accessibility: Focus State */
+      .gallery-item a:focus {
+        outline: 3px solid var(--gold);
+        outline-offset: 4px;
       }
 
-      /* =============================================
-           RESPONSIVE STYLES
-           ============================================= */
-      @media (max-width: 768px) {
-        .nav-links {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100vh;
-          background: var(--color-surface);
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 2rem;
-          transform: translateX(-100%);
-          transition: transform 0.4s ease;
-          z-index: 100;
-        }
+      /* --- 6. Lightbox (Pure CSS) --- */
+      /* The lightbox is hidden by default, shown when :target is activated */
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(46, 15, 58, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
 
-        .nav-links.active {
-          transform: translateX(0);
-        }
+      /* Active State when ID is targeted */
+      .lightbox:target {
+        opacity: 1;
+        visibility: visible;
+      }
 
-        .menu-toggle {
-          display: flex;
-        }
+      /* Lightbox Content */
+      .lightbox-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 85vh;
+        animation: scaleIn 0.4s ease forwards;
+      }
 
-        .gallery-grid {
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-          gap: 16px;
+      @keyframes scaleIn {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
         }
-
-        .item-tall {
-          grid-row: span 35;
-        }
-        .item-medium {
-          grid-row: span 25;
-        }
-        .item-short {
-          grid-row: span 18;
+        to {
+          transform: scale(1);
+          opacity: 1;
         }
       }
 
-      @media (max-width: 480px) {
-        .gallery-grid {
-          grid-template-columns: 1fr;
-        }
-        .item-tall {
-          grid-row: span 45;
-        }
-        .item-medium {
-          grid-row: span 35;
-        }
-        .item-short {
-          grid-row: span 25;
-        }
+      .lightbox-content img {
+        max-height: 85vh;
+        border-radius: 8px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+
+      .lightbox-caption {
+        text-align: center;
+        margin-top: 1rem;
+        color: var(--off-white);
+      }
+
+      .lightbox-caption h3 {
+        color: var(--white);
+        font-size: 1.5rem;
+      }
+
+      .lightbox-caption span {
+        color: var(--gold);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* Lightbox Controls */
+      .btn-close,
+      .btn-nav {
+        position: absolute;
+        background: var(--gold);
+        color: var(--deep-purple);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease, background 0.3s ease;
+        z-index: 1001;
+      }
+
+      .btn-close {
+        top: 20px;
+        right: 20px;
+      }
+
+      .btn-close:hover,
+      .btn-nav:hover {
+        background: var(--white);
+        transform: scale(1.1);
+      }
+
+      /* Navigation Buttons */
+      .btn-prev {
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .btn-next {
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      /* Fix hover transform for nav buttons */
+      .btn-prev:hover {
+        transform: translateY(-50%) scale(1.1);
+      }
+      .btn-next:hover {
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      /* Counter Badge */
+      .counter {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        color: var(--soft-gold);
+        font-size: 0.9rem;
+        font-weight: 600;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 5px 12px;
+        border-radius: 20px;
+      }
+
+      /* Semantic SEO Hidden Titles for Lightboxes (Screen Readers) */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
+      .donations{
+        text-align: center;
+        font-size: 2rem;
       }
     </style>
   </head>
@@ -284,7 +445,7 @@
         </label>
         <nav>
           <ul>
-            <li class="current"><a href="./index.html">Home</a></li>
+            <li><a href="./index.html">Home</a></li>
             <li><a href="./about.html">About</a></li>
             <li><a href="./programs&initiatives.html">Programs</a></li>
             <li><a href="./get-involved.html">Get Involved</a></li>
@@ -296,9 +457,9 @@
       </div>
     </header>
 
-    <main>
-      <!-- HERO SECTION -->
-      <section class="hero">
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-content">
         <h1>Empowering Women. Transforming Communities.</h1>
         <p>
           Women Empowerment Rising Trust Association is dedicated to advancing
@@ -307,553 +468,647 @@
           impactful community outreach initiatives that restore dignity and
           create sustainable futures.
         </p>
-      </section>
-
-          <main>
-      <!-- GALLERY SECTION (Updated with Links) -->
-      <section class="gallery-container" aria-label="Our Programs">
-        <div class="gallery-grid">
-          
-          <!-- Item 1 -->
-          <article class="gallery-item item-tall">
-            <a href="#img1">
-              <img src="./img/g2.jpeg" alt="Women in business training" loading="lazy" />
-              <div class="overlay">
-                <h3>Women Economic Empowerment</h3>
-                <p>Entrepreneurship, financial literacy & skills development</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 2 -->
-          <article class="gallery-item item-short">
-            <a href="#img2">
-              <img src="./img/g8.jpeg" alt="Girl child education support" loading="lazy" />
-              <div class="overlay">
-                <h3>Girl Child Support</h3>
-                <p>Education sponsorship & empowerment programs</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 3 -->
-          <article class="gallery-item item-medium">
-            <a href="#img3">
-              <img src="./img/g14.jpeg" alt="Women mentorship session" loading="lazy" />
-              <div class="overlay">
-                <h3>Networking & Mentorship</h3>
-                <p>Building leadership and professional growth</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 4 -->
-          <article class="gallery-item item-medium">
-            <a href="#img4">
-              <img src="./img/g4.jpeg" alt="Young mother support" loading="lazy" />
-              <div class="overlay">
-                <h3>Support for Young Mothers</h3>
-                <p>Guidance, resources & livelihood assistance</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 5 -->
-          <article class="gallery-item item-tall">
-            <a href="#img5">
-              <img src="./img/g15.jpeg" alt="Community outreach program" loading="lazy" />
-              <div class="overlay">
-                <h3>Community Outreach & Donations</h3>
-                <p>Community impact initiatives & charitable support</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 6 -->
-          <article class="gallery-item item-medium">
-            <a href="#img6">
-              <img src="./img/g3.jpeg" alt="Texture" loading="lazy" />
-              <div class="overlay">
-                <h3>Women Economic Empowerment</h3>
-                <p>Entrepreneurship, financial literacy & skills development</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 7 -->
-          <article class="gallery-item item-short">
-            <a href="#img7">
-              <img src="./img/g5.jpeg" alt="City Skyline" loading="lazy" />
-              <div class="overlay">
-                <h3>Girl Child Support</h3>
-                <p>Education sponsorship & empowerment programs</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 8 -->
-          <article class="gallery-item item-medium">
-            <a href="#img8">
-              <img src="./img/g13.jpeg" alt="Portrait" loading="lazy" />
-              <div class="overlay">
-                <h3>Networking & Mentorship</h3>
-                <p>Building leadership and professional growth</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 9 -->
-          <article class="gallery-item item-tall">
-            <a href="#img9">
-              <img src="./img/g6.jpeg" alt="Nature Path" loading="lazy" />
-              <div class="overlay">
-                <h3>Support for Young Mothers</h3>
-                <p>Guidance, resources & livelihood assistance</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 10 -->
-          <article class="gallery-item item-short">
-            <a href="#img10">
-              <img src="./img/g1.jpeg" alt="Tech" loading="lazy" />
-              <div class="overlay">
-                <h3>Community Outreach & Donations</h3>
-                <p>Community impact initiatives & charitable support</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 11 (Previously labeled Item 8 in comments) -->
-          <article class="gallery-item item-medium">
-            <a href="#img11">
-              <img src="./img/g13.jpeg" alt="Portrait" loading="lazy" />
-              <div class="overlay">
-                <h3>Networking & Mentorship</h3>
-                <p>Building leadership and professional growth</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Item 12 (Previously labeled Item 10) -->
-          <article class="gallery-item item-short">
-            <a href="#img12">
-              <img src="./img/g7.jpeg" alt="Tech" loading="lazy" />
-              <div class="overlay">
-                <h3>Community Outreach & Donations</h3>
-                <p>Community impact initiatives & charitable support</p>
-              </div>
-            </a>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- NEW DONATIONS SECTION -->
-      <section class="gallery-container" aria-label="Donations Gallery">
-        <div class="donations-header">
-            <h2>Donations</h2>
-        </div>
-        <div class="gallery-grid">
-            
-            <!-- New Item 1 -->
-            <article class="gallery-item item-tall">
-                <a href="#img13">
-                  <img src="./img/img1.jpg" alt="Donation Image 1" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-            <!-- New Item 2 -->
-            <article class="gallery-item item-medium">
-                <a href="#img14">
-                  <img src="./img/img2.jpg" alt="Donation Image 2" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-            <!-- New Item 3 -->
-            <article class="gallery-item item-short">
-                <a href="#img15">
-                  <img src="./img/img3.jpg" alt="Donation Image 3" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-            <!-- New Item 4 -->
-            <article class="gallery-item item-medium">
-                <a href="#img16">
-                  <img src="./img/img4.jpg" alt="Donation Image 4" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-            <!-- New Item 5 -->
-            <article class="gallery-item item-tall">
-                <a href="#img17">
-                  <img src="./img/img5.jpg" alt="Donation Image 5" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-            <!-- New Item 6 -->
-            <article class="gallery-item item-medium">
-                <a href="#img18">
-                  <img src="./img/img6.jpg" alt="Donation Image 6" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-            <!-- New Item 7 -->
-            <article class="gallery-item item-short">
-                <a href="#img19">
-                  <img src="./img/img7.jpg" alt="Donation Image 7" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-            <!-- New Item 8 -->
-            <article class="gallery-item item-medium">
-                <a href="#img20">
-                  <img src="./img/img8.jpeg" alt="Donation Image 8" loading="lazy" />
-                  <div class="overlay">
-                    <h3>Community Outreach</h3>
-                    <p>Community impact initiatives & charitable support</p>
-                  </div>
-                </a>
-            </article>
-
-        </div>
-      </section>
-    </main>
-
-    <!-- LIGHTBOX MODALS (Total 20) -->
-
-    <!-- Lightbox 1 -->
-    <div class="lightbox" id="img1">
-      <span class="counter">1 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g2.jpeg" alt="Women in business training" />
-        <div class="lightbox-caption">
-          <h3>Women Economic Empowerment</h3>
-          <span>Entrepreneurship, financial literacy & skills development</span>
-        </div>
       </div>
-      <a href="#img20" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img2" class="btn-nav btn-next">&#10095;</a>
-    </div>
+    </header>
 
-    <!-- Lightbox 2 -->
-    <div class="lightbox" id="img2">
-      <span class="counter">2 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g8.jpeg" alt="Girl child education support" />
-        <div class="lightbox-caption">
-          <h3>Girl Child Support</h3>
+    <!-- Main Gallery -->
+<main class="gallery-container">
+  <div class="masonry-grid">
+    <!-- Item 1 -->
+    <figure class="gallery-item">
+      <a href="#img1">
+        <img
+          src="./img/g1.jpeg"
+          alt="Modern Architecture"
+          loading="lazy"
+        />
+        <div class="overlay">
+          <h3>Women Economic Empowerment</h3>
+          <span>Abstract</span>
+        </div>
+      </a>
+    </figure>
+
+    <!-- Item 2 (Taller) -->
+    <figure class="gallery-item">
+      <a href="#img2">
+        <img src="./img/g17.jpeg" alt="Forest Path" loading="lazy" />
+        <div class="overlay">
+          <h3>Networking & Mentorship</h3>
           <span>Education sponsorship & empowerment programs</span>
         </div>
-      </div>
-      <a href="#img1" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img3" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 3 -->
-    <div class="lightbox" id="img3">
-      <span class="counter">3 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g14.jpeg" alt="Women mentorship session" />
-        <div class="lightbox-caption">
+    <!-- Item 3 -->
+    <figure class="gallery-item">
+      <a href="#img3">
+        <img src="./img/g14.jpeg" alt="Portrait Study" loading="lazy" />
+        <div class="overlay">
           <h3>Networking & Mentorship</h3>
           <span>Building leadership and professional growth</span>
         </div>
-      </div>
-      <a href="#img2" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img4" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 4 -->
-    <div class="lightbox" id="img4">
-      <span class="counter">4 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g4.jpeg" alt="Young mother support" />
-        <div class="lightbox-caption">
-          <h3>Support for Young Mothers</h3>
+    <!-- Item 4 -->
+    <figure class="gallery-item">
+      <a href="#img4">
+        <img src="./img/g13.jpeg" alt="Abstract Art" loading="lazy" />
+        <div class="overlay">
+          <h3>Women Economic Empowerment</h3>
           <span>Guidance, resources & livelihood assistance</span>
         </div>
-      </div>
-      <a href="#img3" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img5" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 5 -->
-    <div class="lightbox" id="img5">
-      <span class="counter">5 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g15.jpeg" alt="Community outreach program" />
-        <div class="lightbox-caption">
-          <h3>Community Outreach & Donations</h3>
-          <span>Community impact initiatives & charitable support</span>
-        </div>
-      </div>
-      <a href="#img4" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img6" class="btn-nav btn-next">&#10095;</a>
-    </div>
-
-    <!-- Lightbox 6 -->
-    <div class="lightbox" id="img6">
-      <span class="counter">6 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g3.jpeg" alt="Texture" />
-        <div class="lightbox-caption">
+    <!-- Item 5 -->
+    <figure class="gallery-item">
+      <a href="#img5">
+        <img src="./img/g3.jpeg" alt="City Skyline" loading="lazy" />
+        <div class="overlay">
           <h3>Women Economic Empowerment</h3>
-          <span>Entrepreneurship, financial literacy & skills development</span>
+          <span
+            >Entrepreneurship, financial literacy & skills development</span
+          >
         </div>
-      </div>
-      <a href="#img5" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img7" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 7 -->
-    <div class="lightbox" id="img7">
-      <span class="counter">7 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g5.jpeg" alt="City Skyline" />
-        <div class="lightbox-caption">
-          <h3>Girl Child Support</h3>
+    <!-- Item 6 (Tall) -->
+    <figure class="gallery-item">
+      <a href="#img6">
+        <img src="./img/g5.jpeg" alt="Ocean Waves" loading="lazy" />
+        <div class="overlay">
+          <h3>Networking & Mentorship</h3>
           <span>Education sponsorship & empowerment programs</span>
         </div>
-      </div>
-      <a href="#img6" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img8" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 8 -->
-    <div class="lightbox" id="img8">
-      <span class="counter">8 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g13.jpeg" alt="Portrait" />
-        <div class="lightbox-caption">
+    <!-- Item 7 -->
+    <figure class="gallery-item">
+      <a href="#img7">
+        <img src="./img/g12.jpeg" alt="Glass Building" loading="lazy" />
+        <div class="overlay">
           <h3>Networking & Mentorship</h3>
           <span>Building leadership and professional growth</span>
         </div>
-      </div>
-      <a href="#img7" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img9" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 9 -->
-    <div class="lightbox" id="img9">
-      <span class="counter">9 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g6.jpeg" alt="Nature Path" />
-        <div class="lightbox-caption">
-          <h3>Support for Young Mothers</h3>
-          <span>Guidance, resources & livelihood assistance</span>
+    <!-- Item 8 -->
+    <figure class="gallery-item">
+      <a href="#img8">
+        <img src="./img/g6.jpeg" alt="Studio Portrait" loading="lazy" />
+        <div class="overlay">
+          <h3>Women Economic Empowerment</h3>
+          <span
+            >Entrepreneurship, financial literacy & skills development</span
+          >
         </div>
-      </div>
-      <a href="#img8" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img10" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 10 -->
-    <div class="lightbox" id="img10">
-      <span class="counter">10 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g1.jpeg" alt="Tech" />
-        <div class="lightbox-caption">
-          <h3>Community Outreach & Donations</h3>
-          <span>Community impact initiatives & charitable support</span>
-        </div>
-      </div>
-      <a href="#img9" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img11" class="btn-nav btn-next">&#10095;</a>
-    </div>
-
-    <!-- Lightbox 11 -->
-    <div class="lightbox" id="img11">
-      <span class="counter">11 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g13.jpeg" alt="Portrait" />
-        <div class="lightbox-caption">
+    <!-- Item 9 -->
+    <figure class="gallery-item">
+      <a href="#img9">
+        <img src="./img/g2.jpeg" alt="Mountain Lake" loading="lazy" />
+        <div class="overlay">
           <h3>Networking & Mentorship</h3>
-          <span>Building leadership and professional growth</span>
+          <span>Portrait</span>
         </div>
-      </div>
-      <a href="#img10" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img12" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
+    
+  </div>
+</main>
 
-    <!-- Lightbox 12 (Last Original) -->
-    <div class="lightbox" id="img12">
-      <span class="counter">12 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/g7.jpeg" alt="Tech" />
-        <div class="lightbox-caption">
+<!-- Lightbox Modals -->
+<!-- Logic: Chain links updated to handle 19 total images -->
+
+<!-- Lightbox 1 -->
+<div class="lightbox" id="img1">
+  <span class="counter">1 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g1.jpeg" alt="Modern Architecture" />
+    <div class="lightbox-caption">
+      <h3>Women Economic Empowerment</h3>
+      <span></span>
+    </div>
+  </div>
+  <!-- Nav Logic: Prev goes to last new item (19), Next goes to img2 -->
+  <a href="#img19" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img2" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 2 -->
+<div class="lightbox" id="img2">
+  <span class="counter">2 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g17.jpeg" alt="Forest Path" />
+    <div class="lightbox-caption">
+      <h3>Networking & Mentorship</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img1" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img3" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 3 -->
+<div class="lightbox" id="img3">
+  <span class="counter">3 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g14.jpeg" alt="Portrait Study" />
+    <div class="lightbox-caption">
+      <h3>Networking & Mentorship</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img2" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img4" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 4 -->
+<div class="lightbox" id="img4">
+  <span class="counter">4 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g13.jpeg" alt="Abstract Art" />
+    <div class="lightbox-caption">
+      <h3>Women Economic Empowerment</h3>
+      <span>Abstract</span>
+    </div>
+  </div>
+  <a href="#img3" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img5" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 5 -->
+<div class="lightbox" id="img5">
+  <span class="counter">5 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g3.jpeg" alt="City Skyline" />
+    <div class="lightbox-caption">
+      <h3>Women Economic Empowerment</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img4" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img6" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 6 -->
+<div class="lightbox" id="img6">
+  <span class="counter">6 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g5.jpeg" alt="Ocean Waves" />
+    <div class="lightbox-caption">
+      <h3>Networking & Mentorship</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img5" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img7" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 7 -->
+<div class="lightbox" id="img7">
+  <span class="counter">7 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g12.jpeg" alt="Glass Building" />
+    <div class="lightbox-caption">
+      <h3>Networking & Mentorship</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img6" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img8" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 8 -->
+<div class="lightbox" id="img8">
+  <span class="counter">8 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g6.jpeg" alt="Studio Portrait" />
+    <div class="lightbox-caption">
+      <h3>Women Economic Empowerment</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img7" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img9" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 9 -->
+<div class="lightbox" id="img9">
+  <span class="counter">9 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g2.jpeg" alt="Mountain Lake" />
+    <div class="lightbox-caption">
+      <h3>Networking & Mentorship</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img8" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img10" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 10 -->
+<div class="lightbox" id="img10">
+  <span class="counter">10 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g8.jpeg" alt="Geometric Shapes" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach & Donations</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img9" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img11" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 11 -->
+<div class="lightbox" id="img11">
+  <span class="counter">11 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/g16.jpeg" alt="Street Photography" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach & Donations</h3>
+      <span></span>
+    </div>
+  </div>
+  <a href="#img10" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <!-- Next now goes to the new first image (12) -->
+  <a href="#img12" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- NEW LIGHTBOXES (12-19) -->
+
+<!-- Lightbox 12 -->
+<div class="lightbox" id="img12">
+  <span class="counter">12 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img1.jpg" alt="Donation Image 1" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img11" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img13" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 13 -->
+<div class="lightbox" id="img13">
+  <span class="counter">13 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img2.jpg" alt="Donation Image 2" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img12" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img14" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 14 -->
+<div class="lightbox" id="img14">
+  <span class="counter">14 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img3.jpg" alt="Donation Image 3" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img13" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img15" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 15 -->
+<div class="lightbox" id="img15">
+  <span class="counter">15 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img4.jpg" alt="Donation Image 4" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img14" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img16" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 16 -->
+<div class="lightbox" id="img16">
+  <span class="counter">16 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img5.jpg" alt="Donation Image 5" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img15" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img17" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 17 -->
+<div class="lightbox" id="img17">
+  <span class="counter">17 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img6.jpg" alt="Donation Image 6" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img16" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img18" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 18 -->
+<div class="lightbox" id="img18">
+  <span class="counter">18 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img7.jpg" alt="Donation Image 7" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img17" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <a href="#img19" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<!-- Lightbox 19 -->
+<div class="lightbox" id="img19">
+  <span class="counter">19 / 19</span>
+  <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
+  <div class="lightbox-content">
+    <img src="./img/img8.jpeg" alt="Donation Image 8" />
+    <div class="lightbox-caption">
+      <h3>Community Outreach</h3>
+      <span>Community impact initiatives & charitable support</span>
+    </div>
+  </div>
+  <a href="#img18" class="btn-nav btn-prev" aria-label="Previous Image"
+    >&#10094;</a
+  >
+  <!-- Next loops back to 1 -->
+  <a href="#img1" class="btn-nav btn-next" aria-label="Next Image"
+    >&#10095;</a
+  >
+</div>
+
+<div class="donations">
+  <h1>Donations</h1>
+</div>
+
+<main class="gallery-container">
+  <div class="masonry-grid">
+    <!-- Item 10 -->
+    <figure class="gallery-item">
+      <a href="#img10">
+        <img src="./img/g8.jpeg" alt="Geometric Shapes" loading="lazy" />
+        <div class="overlay">
+          <h3>Community Outreach & Donations</h3>
+          <span>Abstract</span>
+        </div>
+      </a>
+    </figure>
+
+    <!-- Item 11 -->
+    <figure class="gallery-item">
+      <a href="#img11">
+        <img
+          src="./img/g16.jpeg"
+          alt="Street Photography"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach & Donations</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img11" class="btn-nav btn-prev">&#10094;</a>
-      <!-- Next goes to first new image -->
-      <a href="#img13" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- NEW DONATION LIGHTBOXES (13-20) -->
+    <!-- New Items 1-8 (Linked to img12-img19) -->
 
-    <!-- Lightbox 13 -->
-    <div class="lightbox" id="img13">
-      <span class="counter">13 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img1.jpg" alt="Donation Image 1" />
-        <div class="lightbox-caption">
+    <!-- New Item 1 -->
+    <figure class="gallery-item">
+      <a href="#img12">
+        <img
+          src="./img/img1.jpg"
+          alt="Donation Image 1"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img12" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img14" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 14 -->
-    <div class="lightbox" id="img14">
-      <span class="counter">14 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img2.jpg" alt="Donation Image 2" />
-        <div class="lightbox-caption">
+    <!-- New Item 2 -->
+    <figure class="gallery-item">
+      <a href="#img13">
+        <img
+          src="./img/img2.jpg"
+          alt="Donation Image 2"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img13" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img15" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 15 -->
-    <div class="lightbox" id="img15">
-      <span class="counter">15 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img3.jpg" alt="Donation Image 3" />
-        <div class="lightbox-caption">
+    <!-- New Item 3 -->
+    <figure class="gallery-item">
+      <a href="#img14">
+        <img
+          src="./img/img3.jpg"
+          alt="Donation Image 3"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img14" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img16" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 16 -->
-    <div class="lightbox" id="img16">
-      <span class="counter">16 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img4.jpg" alt="Donation Image 4" />
-        <div class="lightbox-caption">
+    <!-- New Item 4 -->
+    <figure class="gallery-item">
+      <a href="#img15">
+        <img
+          src="./img/img4.jpg"
+          alt="Donation Image 4"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img15" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img17" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 17 -->
-    <div class="lightbox" id="img17">
-      <span class="counter">17 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img5.jpg" alt="Donation Image 5" />
-        <div class="lightbox-caption">
+    <!-- New Item 5 -->
+    <figure class="gallery-item">
+      <a href="#img16">
+        <img
+          src="./img/img5.jpg"
+          alt="Donation Image 5"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img16" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img18" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 18 -->
-    <div class="lightbox" id="img18">
-      <span class="counter">18 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img6.jpg" alt="Donation Image 6" />
-        <div class="lightbox-caption">
+    <!-- New Item 6 -->
+    <figure class="gallery-item">
+      <a href="#img17">
+        <img
+          src="./img/img6.jpg"
+          alt="Donation Image 6"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img17" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img19" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 19 -->
-    <div class="lightbox" id="img19">
-      <span class="counter">19 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img7.jpg" alt="Donation Image 7" />
-        <div class="lightbox-caption">
+    <!-- New Item 7 -->
+    <figure class="gallery-item">
+      <a href="#img18">
+        <img
+          src="./img/img7.jpg"
+          alt="Donation Image 7"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img18" class="btn-nav btn-prev">&#10094;</a>
-      <a href="#img20" class="btn-nav btn-next">&#10095;</a>
-    </div>
+      </a>
+    </figure>
 
-    <!-- Lightbox 20 (Last New Item) -->
-    <div class="lightbox" id="img20">
-      <span class="counter">20 / 20</span>
-      <a href="#" class="btn-close" aria-label="Close Lightbox">&times;</a>
-      <div class="lightbox-content">
-        <img src="./img/img8.jpeg" alt="Donation Image 8" />
-        <div class="lightbox-caption">
+    <!-- New Item 8 -->
+    <figure class="gallery-item">
+      <a href="#img19">
+        <img
+          src="./img/img8.jpeg"
+          alt="Donation Image 8"
+          loading="lazy"
+        />
+        <div class="overlay">
           <h3>Community Outreach</h3>
           <span>Community impact initiatives & charitable support</span>
         </div>
-      </div>
-      <a href="#img19" class="btn-nav btn-prev">&#10094;</a>
-      <!-- Loops back to start -->
-      <a href="#img1" class="btn-nav btn-next">&#10095;</a>
-    </div>
-      
+      </a>
+    </figure>
+  </div>
+</main>
+
     <!-- FOOTER -->
     <hr class="divider" />
 
@@ -893,9 +1148,9 @@
           <div class="footer-section">
             <h4 class="footer-heading">Be A Member</h4>
             <ul class="footer-links">
-              <li><a href="#">Join Us</a></li>
-              <li><a href="#">Support the Girl Child</a></li>
-              <li><a href="#">Partner With Us</a></li>
+              <li><a href="./contact.html">Join Us</a></li>
+              <li><a href="./get-involved.html">Support the Girl Child</a></li>
+              <li><a href="./programs&initiatives.html">Partner With Us</a></li>
             </ul>
           </div>
 
@@ -962,7 +1217,7 @@
             Reserved.
           </p>
           <div class="footer-social">
-            <a href="#" class="social-link" aria-label="Facebook">
+            <a href="https://www.facebook.com/share/g/1AYt1xGMow/?mibextid=wwXIfr" class="social-link" aria-label="Facebook">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
@@ -976,7 +1231,7 @@
                 ></path>
               </svg>
             </a>
-            <a href="#" class="social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/empowered_women_rising_trust?igsh=MTBrN3U1ODVlOHNxbg%3D%3D&utm_source=qr" class="social-link" aria-label="Instagram">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
